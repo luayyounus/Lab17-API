@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace TaskManager.Controllers
 {
     [Route("api/[controller]")]
-    public class TasksController : Controller
+    public class ToDoController : Controller
     {
         // GET: api/<controller>
         [HttpGet]
