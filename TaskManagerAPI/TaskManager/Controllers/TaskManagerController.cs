@@ -13,29 +13,23 @@ using TaskManager.Models;
 namespace TaskManager.Controllers
 {
     [Route("api/[controller]")]
-    public class ToDoController : Controller
+    public class TaskManagerController : Controller
     {
         private readonly ToDoDbContext _context;
-        public ToDoController(ToDoDbContext context)
+        public TaskManagerController(ToDoDbContext context)
         {
             _context = context;
         }
 
-        // GET: api/<controller>
+        // GET: api/TaskManager
         [HttpGet]
-        public IEnumerable<ToDo> Get()
-        {
-            return _context.ToDos;
-        }
+        public IEnumerable<ToDo> Get() => _context.ToDos;
 
-        // GET api/<controller>/5
+        // GET: api/TaskManager/{id}
         [HttpGet("{id:int}")]
-        public ToDo Get(int id)
-        {
-            return _context.ToDos.FirstOrDefault(t => t.ID == id);
-        }
+        public ToDo Get(int id) => _context.ToDos.FirstOrDefault(t => t.ID == id);
 
-        // POST api/<controller>
+        // POST: api/TaskManager/
         [HttpPost]
         public async Task<IActionResult> Post([FromBody]ToDo todo)
         {
@@ -44,12 +38,12 @@ namespace TaskManager.Controllers
             return CreatedAtAction("Get", todo);
         }
 
-        // PUT api/<controller>/5
-        [HttpPut("{id}")]
+        // PUT: api/TaskManager/{id}
+        [HttpPut("{id:int}")]
         public async Task<HttpResponseMessage> Put(int id, [FromBody]ToDo todo)
         {
             var result = _context.ToDos.FirstOrDefault(t => t.ID == id);
-            if(result != null)
+            if (result != null)
             {
                 result.Description = todo.Description;
                 result.Done = todo.Done;
@@ -63,12 +57,12 @@ namespace TaskManager.Controllers
             return new HttpResponseMessage(HttpStatusCode.OK);
         }
 
-        // DELETE api/<controller>/5
-        [HttpDelete("{id}")]
+        // DELETE: api/TaskManager/{id}
+        [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
             var result = _context.ToDos.FirstOrDefault(t => t.ID == id);
-            if(result != null)
+            if (result != null)
             {
                 _context.Remove(result);
                 await _context.SaveChangesAsync();
