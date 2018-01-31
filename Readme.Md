@@ -1,46 +1,86 @@
-![cf](http://i.imgur.com/7v5ASc8.png) Lab 17 : Create Tasks
-=====================================
+# Task Manager API
 
-## To Submit this Assignment
-- fork this repository
-- write all of your code in a directory named `lab-#`; + `<your name>` **e.g.** `lab10-amanda`
-- push to your repository
-- submit a pull request to this repository
-- submit a link to your PR in canvas
+**Authors**: Luay Younus
+**Version**: 1.0.0
 
-## Directions
-Build an api that creates and saves individual tasks. Think of tasks like:
-1. "Take Cat to Vet"
-2. "Eat Ice Cream", etc... 
+## Overview
+Task Manager API that deployed on Azure.
 
-Don't worry about grouping these tasks just yet, only focus on the individual items. 
 
-1. Use Postman or Fiddler to test your connections
-2. Have the Create/Read/Update/Delete commands
-3. use asyncrounous programming (async...await)
-3. Deploy your applicaiton to Azure
-4. Remember about routing (hint: /api/[controller]), and constraint tokens {int:id} above any actions
+## Getting Started
+The following are required to run the program locally.
+- [Visual Studio 2017 Community with .NET Core 2.0 SDK](https://www.microsoft.com/net/core#windowscmd)
+- [GitBash / Terminal](https://git-scm.com/downloads) or [GitHub Extension for Visual Studio](https://visualstudio.github.com)
 
-## ReadMe
-A README is a module consumer's first -- and maybe only -- look into your creation. The consumer wants a module to fulfill their need, so you must explain exactly what need your module fills, and how effectively it does so.
-<br />
-Your job is to
-1. tell them what it is (with context)
-2. show them what it looks like in action
-3. show them how they use it
-4. tell them any other relevant details
-5 **Include a link to your deployed app in your Readme**
-<br />
+1. Clone the repository to your local machine.
+2. Cd into the application directory where the `AppName.sln` exist.
+3. Open the application using `Open/Start AppName.sln`.
+4. Click `Tools` -> `NuGet Package Manager` -> `Package Manager Console` then run the following commands in the console.
+```css
+- Install-Package Microsoft.EntityFrameworkCore.Tools
+- Add-Migration Initial
+- Update-Database
+```
 
-This is ***your*** job. It's up to the module creator to prove that their work is a shining gem in the sea of slipshod modules. 
-Since so many developers' eyes will find their way to your README before anything else, quality here is your public-facing measure of your work.
+# API Endpoints
 
-<br /> Refer to the sample-README in the class repo for an example. 
-- [Reference](https://github.com/noffle/art-of-readme)
+#### Link to deployment on Azure
 
-## Rubric
-- 7pts: Program meets all requirements described in Lab directions
-- 3pts: Code meets industry standards
+[![APIEndPoint](https://raw.githubusercontent.com/MidTermProject/Monster-Hunter-API/master/Resources/azure-logo.png?raw=true) ](http://taskmanagerapi-cf.azurewebsites.net/api/)
 
-- **Readme.md and unit tests required for submission. Missing readme document and tests will result in a best score of 2/10**
-- **Program must build sucessfully and tests MUST be passing**
+Getting all Todos from the Database
+
+```yaml
+GET: api/TaskManager
+```
+
+Getting a single Todo by ID.
+
+```yaml
+GET: api/TaskManager/{id}
+```
+
+Post/Create a new Todo on the Database
+
+```yaml
+POST: api/TaskManager/
+```
+
+Update a Todo
+
+```yaml
+PUT: api/TaskManager/{id}
+```
+
+Delete a Todo from the Database
+
+```yaml
+DELETE: api/TaskManager/{id}
+```
+
+
+#### Todo JSON Example
+```json
+[
+    {
+        "id": 1,
+        "description":"Buy groceries",
+        "done": true
+    },
+    {
+        "id": 2,
+        "description":"Go to work",
+        "done": false
+    }
+]
+```
+
+
+### Frameworks & Dependencies
+- Entity Framework Core
+- ASP.NET Core
+- Xunit
+- Test Host
+
+## Architecture
+C# ASP.NET Core MVC Application
